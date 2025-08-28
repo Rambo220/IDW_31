@@ -43,7 +43,16 @@ main {
 
 main h2, main h3 {
     margin: 1rem 0 1.5rem 0;
+    margin-left: 2rem;
     color: #1565C0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main h1 {
+    text-align: justify;
+    margin: 1rem 0 1.5rem 0;
+    margin-left: 2rem;
+    color: #4451ae;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -63,9 +72,18 @@ main li a {
     text-decoration: none
 }
 
+main iframe {
+    border: 0.25rem solid #1976D2;
+    border-radius: 0.5rem;
+    margin-left: 1rem;
+}
+
 main p,
 main li {
+    text-align: justify;
     margin-bottom: 0.5rem;
+    margin-left: 1rem;
+
     color: #0B1623
 }
 
