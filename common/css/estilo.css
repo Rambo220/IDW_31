@@ -141,13 +141,14 @@ footer {
   margin-top: 2rem;
 }
 
-<<<<<<< Updated upstream
+
 /* Médicos */
 .card-img-top {
-  height: 360px;         
-  object-fit: cover;     
-  object-position: 50% 15%; 
-=======
+  height: 360px;
+  object-fit: cover;
+  object-position: 50% 15%;
+}
+
 /* LOGO */
 .logo {
   max-height: 60px;
@@ -165,5 +166,5 @@ footer {
   .logo {
     max-height: 40px;
   }
->>>>>>> Stashed changes
+
 }
