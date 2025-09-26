@@ -3,23 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="common/css/bootstrap.min.css" rel="stylesheet">
     <link href="common/css/estilo.css" type="text/css" rel="stylesheet" media="screen" />
     <title>Contacto</title>
 </head>
 
 <body>
-    <header>
-        <div class="top-bar">
-            <img class="logo" src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo Centro Médico IDW" />
-            <nav>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="institucional.html">Acerca de</a></li>
-                    <li><a href="contacto.html" class="active">Contacto</a></li>
+<header>
+    <nav class="navbar navbar-expand-lg" style="padding: 0;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img class="logo" src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo del Centro Médico IDW S.A." />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="institucional.html">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light" id="toggleDarkMode">Modo Oscuro</button>
+                    </li>
                 </ul>
-            </nav>
+            </div>
         </div>
-    </header>
+    </nav>
+</header>
+
+
 
     <section class="hero">
         <div class="overlay"></div>
