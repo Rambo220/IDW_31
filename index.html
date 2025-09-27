@@ -2,44 +2,39 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="common/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Estilos -->
     <link href="common/css/estilo.css" type="text/css" rel="stylesheet" media="screen" />
-  <title>Portal</title>
+
+    <title>Portal</title>
 </head>
 
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg" style="padding: 0;">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#054d6c;">
         <div class="container-fluid">
+            <!-- Logo -->
             <a class="navbar-brand" href="index.html">
-                <img class="logo" src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo del Centro Médico IDW S.A." />
+                <img src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo Centro Médico IDW" class="img-fluid"
+                    style="max-height:60px;">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="institucional.html">Acerca de</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contacto.html">Contacto</a>
-                    </li>
-                    <li class="nav-item">
-                        <button class="btn btn-outline-light" id="toggleDarkMode">Modo Oscuro</button>
-                    </li>
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="institucional.html">Acerca de</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-</header>
-
-
 
     <section class="hero">
         <div class="overlay"></div>
@@ -50,97 +45,95 @@
     </section>
 
     <main>
-      <section class="container py-5">
-        <h2 class="text-center mb-4">Nuestros Profesionales</h2>
-        <div class="row g-4">
-   
-          <!-- 1 -->
-          <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-              <img src="common/img/doctores/d1.jpg" class="card-img-top" alt="Dr. Ramiro Borgo">
-              <div class="card-body text-center">
-                <h5 class="card-title">Dr. Ramiro Borgo</h5>
-                <p class="card-text">Especialidad: Cardiología</p>
-                <p class="card-text">Experiencia: 12 años</p>
-              </div>
+        <section class="container py-5">
+            <h2 class="text-center mb-4">Nuestros Profesionales</h2>
+            <div class="row g-4">
+
+                <!-- 1 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="common/img/doctores/d1.jpg" class="card-img-top" alt="Dr. Ramiro Borgo">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Dr. Ramiro Borgo</h5>
+                            <p class="card-text">Especialidad: Cardiología</p>
+                            <p class="card-text">Experiencia: 12 años</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="common/img/doctores/d2.jpg" class="card-img-top" alt="Dr. Martin Mansilla">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Dr. Martin Mansilla</h5>
+                            <p class="card-text">Especialidad: Pediatría</p>
+                            <p class="card-text">Experiencia: 9 años</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="common/img/doctores/d3.jpg" class="card-img-top" alt="Dr. Fabian Brites">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Dr. Fabian Brites</h5>
+                            <p class="card-text">Especialidad: Dermatología</p>
+                            <p class="card-text">Experiencia: 7 años</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="common/img/doctores/d4.jpg" class="card-img-top" alt="Dra. Lucia Benavente">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Dra. Lucia Benavente</h5>
+                            <p class="card-text">Especialidad: Neurología</p>
+                            <p class="card-text">Experiencia: 6 años</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="common/img/doctores/d5.jpg" class="card-img-top" alt="Dr. Martin Bourlot">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Dr. Martin Bourlot</h5>
+                            <p class="card-text">Especialidad: Traumatología</p>
+                            <p class="card-text">Experiencia: 10 años</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="common/img/doctores/d6.jpg" class="card-img-top" alt="Dra. Ayelen Doubña">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Dra. Ayelen Doubña</h5>
+                            <p class="card-text">Especialidad: Ginecología</p>
+                            <p class="card-text">Experiencia: 8 años</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
-   
-          <!-- 2 -->
-          <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-              <img src="common/img/doctores/d2.jpg" class="card-img-top" alt="Dr. Martin Mansilla">
-              <div class="card-body text-center">
-                <h5 class="card-title">Dr. Martin Mansilla</h5>
-                <p class="card-text">Especialidad: Pediatría</p>
-                <p class="card-text">Experiencia: 9 años</p>
-              </div>
-            </div>
-          </div>
-   
-          <!-- 3 -->
-          <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-              <img src="common/img/doctores/d3.jpg" class="card-img-top" alt="Dr. Fabian Brites">
-              <div class="card-body text-center">
-                <h5 class="card-title">Dr. Fabian Brites</h5>
-                <p class="card-text">Especialidad: Dermatología</p>
-                <p class="card-text">Experiencia: 7 años</p>
-              </div>
-            </div>
-          </div>
-   
-          <!-- 4 -->
-          <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-              <img src="common/img/doctores/d4.jpg" class="card-img-top" alt="Dra. Lucia Benavente">
-              <div class="card-body text-center">
-                <h5 class="card-title">Dra. Lucia Benavente</h5>
-                <p class="card-text">Especialidad: Neurología</p>
-                <p class="card-text">Experiencia: 6 años</p>
-              </div>
-            </div>
-          </div>
-   
-          <!-- 5 -->
-          <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-              <img src="common/img/doctores/d5.jpg" class="card-img-top" alt="Dr. Martin Bourlot">
-              <div class="card-body text-center">
-                <h5 class="card-title">Dr. Martin Bourlot</h5>
-                <p class="card-text">Especialidad: Traumatología</p>
-                <p class="card-text">Experiencia: 10 años</p>
-              </div>
-            </div>
-          </div>
-   
-          <!-- 6 -->
-          <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-              <img src="common/img/doctores/d6.jpg" class="card-img-top" alt="Dra. Ayelen Doubña">
-              <div class="card-body text-center">
-                <h5 class="card-title">Dra. Ayelen Doubña</h5>
-                <p class="card-text">Especialidad: Ginecología</p>
-                <p class="card-text">Experiencia: 8 años</p>
-              </div>
-            </div>
-          </div>
-   
-        </div>
-      </section>
+        </section>
     </main>
 
     <footer>
         <div class="container text-center py-3">
             <p>&copy; 2025 IDW S.A</p>
         </div>
-        <div class="container text-center py-3">
-            <p>&copy; 2025 IDW S.A</p>
-        </div>
     </footer>
 
-      <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
