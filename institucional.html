@@ -1,101 +1,93 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="common/css/estilo.css" type="text/css" rel="stylesheet" media="screen" />
   <title>Acerca de</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="common/css/estilo.css" rel="stylesheet" media="screen">
 </head>
+<body data-theme="light">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">
+        <img src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo Centro Médico IDW" class="logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuPrincipal">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link active" href="institucional.html">Acerca de</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        <button class="btn btn-outline-light ms-3" onclick="cambiarTema()">
+          <i id="d1-icon" class="bi bi-moon-fill"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid">
-    <!-- Logo -->
-    <a class="navbar-brand" href="index.html">
-      <img src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo Centro Médico IDW" class="logo">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
-      aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="menuPrincipal">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link active" href="institucional.html">Acerca de</a></li>
-        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
-      </ul>
+  <div class="nav-datetime">
+    <div class="container">
+      <span id="datetime"></span>
     </div>
   </div>
-</nav>
 
-<div class="nav-datetime">
-  <div class="container">
-    <span id="datetime"></span>
-  </div>
-</div>
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Información Institucional</h1>
+      <p>Conoce nuestra misión, visión y valores</p>
+    </div>
+  </section>
 
-
-    <section class="hero">
-        <div class="overlay"></div>
-        <div class="hero-content">
-            <h1>Información Institucional</h1>
-            <p>Conoce nuestra misión, visión y valores</p>
-        </div>
+  <main>
+    <section class="info-container">
+      <div class="info-box cyan">
+        <h3>Nuestra Misión</h3>
+        <p>Proveer servicios de salud de alta calidad con un enfoque centrado en el paciente.</p>
+      </div>
+      <div class="info-box green">
+        <h3>Nuestra Visión</h3>
+        <p>Ser líderes en el sector salud, reconocidos por nuestra excelencia y compromiso con la comunidad.</p>
+      </div>
+      <div class="info-box blue">
+        <h3>Nuestros Valores</h3>
+        <ul>
+          <li>Compromiso</li>
+          <li>Calidad</li>
+          <li>Empatía</li>
+          <li>Innovación</li>
+          <li>Trabajo en equipo</li>
+        </ul>
+      </div>
     </section>
+  </main>
 
-    <main>
-        <section class="info-container">
+  <footer>
+    <div class="container text-center">
+      <p>© 2025 IDW S.A</p>
+    </div>
+  </footer>
 
-            <div class="info-box cyan">
-                <h3>Nuestra Misión</h3>
-                <p>Proveer servicios de salud de alta calidad con un enfoque centrado en el paciente.</p>
-            </div>
-
-            <div class="info-box green">
-                <h3>Nuestra Visión</h3>
-                <p>Ser líderes en el sector salud, reconocidos por nuestra excelencia y compromiso con la comunidad.</p>
-            </div>
-
-            <div class="info-box blue">
-                <h3>Nuestros Valores</h3>
-                <ul>
-                    <li>Compromiso</li>
-                    <li>Calidad</li>
-                    <li>Empatía</li>
-                    <li>Innovación</li>
-                    <li>Trabajo en equipo</li>
-                </ul>
-            </div>
-
-        </section>
-    </main>
-
-    <footer>
-        <div class="container text-center">
-            <p>&copy; 2025 IDW S.A</p>
-        </div>
-    </footer>
+  <script>
+    function firstUpper(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+    function updateDateTime(){
+      const now = new Date();
+      const weekday = firstUpper(now.toLocaleDateString('es-ES', { weekday: 'long' }));
+      const day     = now.getDate();
+      const month   = firstUpper(now.toLocaleDateString('es-ES', { month: 'long' }));
+      const year    = now.getFullYear();
+      const time    = now.toLocaleTimeString('es-AR', { hour12: true });
+      document.getElementById('datetime').textContent = `${weekday}, ${day} de ${month} de ${year} • ${time}`;
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
-<script>
-  function firstUpper(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
-
-  function updateDateTime(){
-    const now = new Date();
-
-    const weekday = firstUpper(now.toLocaleDateString('es-ES', { weekday: 'long' }));
-    const day     = now.getDate();
-    const month   = firstUpper(now.toLocaleDateString('es-ES', { month: 'long' }));
-    const year    = now.getFullYear();   
-    const time    = now.toLocaleTimeString('es-AR', { hour12: true });  
-
-    document.getElementById('datetime').textContent =
-      `${weekday}, ${day} de ${month} de ${year} • ${time}`;
-  }
-
-  updateDateTime();
-  setInterval(updateDateTime, 1000);
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </html>
