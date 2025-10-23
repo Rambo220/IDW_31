@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ingreso de Administrador</title>
+
+  <!-- Bootstrap y estilos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="common/css/estilo.css" rel="stylesheet" media="screen" />
+</head>
+<body class="bg-light">
+
+  <nav class="navbar navbar-dark bg-dark px-3">
+    <a class="navbar-brand" href="index.html">
+      <img src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo IDW" class="logo" />
+    </a>
+  </nav>
+
+  <div class="container py-5 d-flex justify-content-center">
+    <div class="card p-4 shadow-sm" style="max-width: 400px; width: 100%;">
+      <h3 class="text-center mb-3">Ingreso de Administrador</h3>
+      <form id="loginForm">
+        <div class="mb-3">
+          <label for="usuario" class="form-label">Usuario</label>
+          <input type="text" id="usuario" class="form-control" value="admin" required />
+        </div>
+        <div class="mb-3">
+          <label for="clave" class="form-label">Contraseña</label>
+          <input type="password" id="clave" class="form-control" value="1234" required />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-white text-center py-3 mt-auto">
+    © 2025 IDW S.A
+  </footer>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const usuario = document.getElementById('usuario').value.trim();
+      const clave = document.getElementById('clave').value.trim();
+
+      if (usuario === 'admin' && clave === '1234') {
+        localStorage.setItem('userRole', 'admin');
+        alert('Sesión iniciada correctamente ');
+        window.location.href = 'index.html';
+      } else {
+        alert('Credenciales incorrectas ');
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
