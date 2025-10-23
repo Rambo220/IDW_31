@@ -10,73 +10,104 @@
 </head>
 <body data-theme="light">
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">
-        <img src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo Centro Médico IDW" class="logo">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="menuPrincipal">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="institucional.html">Acerca de</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
-          <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
-          <li class="nav-item"><a class="nav-link" href="medicos.html">Administrar Médicos</a></li>
-        </ul>
-        <button class="btn btn-outline-light ms-3" onclick="cambiarTema()">
-          <i id="d1-icon" class="bi bi-moon-fill"></i>
-        </button>
-      </div>
-    </div>
   </nav>
 
   <div class="container py-4">
     <h1 id="form-title" class="mb-3">Nuevo Médico</h1>
+
     <form id="form-medico" novalidate class="row g-3">
+      <input id="id" name="id" type="hidden">
+
       <div class="col-md-6">
         <label for="nombre" class="form-label">Nombre</label>
         <input id="nombre" name="nombre" type="text" class="form-control" required>
         <div class="form-text text-danger small" data-for="nombre"></div>
       </div>
+
       <div class="col-md-6">
         <label for="apellido" class="form-label">Apellido</label>
         <input id="apellido" name="apellido" type="text" class="form-control" required>
         <div class="form-text text-danger small" data-for="apellido"></div>
       </div>
+
       <div class="col-md-4">
         <label for="matricula" class="form-label">Matrícula</label>
         <input id="matricula" name="matricula" type="number" class="form-control" required>
         <div class="form-text text-danger small" data-for="matricula"></div>
       </div>
+
       <div class="col-md-4">
         <label for="especialidadId" class="form-label">Especialidad</label>
         <select id="especialidadId" name="especialidadId" class="form-select" required></select>
         <div class="form-text text-danger small" data-for="especialidadId"></div>
       </div>
+
       <div class="col-md-4">
+        <label for="valorConsulta" class="form-label">Valor de consulta</label>
+        <input id="valorConsulta" name="valorConsulta" type="number" step="0.01" class="form-control" required>
+        <div class="form-text text-danger small" data-for="valorConsulta"></div>
+      </div>
+
+      <div class="col-md-6">
         <label for="email" class="form-label">Email</label>
         <input id="email" name="email" type="email" class="form-control" required>
         <div class="form-text text-danger small" data-for="email"></div>
       </div>
+
       <div class="col-md-6">
         <label for="telefono" class="form-label">Teléfono</label>
         <input id="telefono" name="telefono" type="tel" class="form-control">
         <div class="form-text text-danger small" data-for="telefono"></div>
       </div>
+
+      <div class="col-md-12">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea id="descripcion" name="descripcion" class="form-control" rows="4" placeholder="Presentación del profesional"></textarea>
+        <div class="form-text text-danger small" data-for="descripcion"></div>
+      </div>
+
+      <!-- Obras sociales -->
+      <div class="col-md-6">
+        <label for="obrasSociales" class="form-label">Obras sociales que acepta</label>
+        <select id="obrasSociales" name="obrasSociales" class="form-select" multiple></select>
+        <div class="form-text text-danger small" data-for="obrasSociales"></div>
+      </div>
+
+      <!-- Fotografía -->
+      <div class="col-md-6">
+        <label for="fotoFile" class="form-label">Fotografía</label>
+        <input id="fotoFile" name="fotoFile" type="file" accept="image/*" class="form-control">
+        <input id="fotografia" name="fotografia" type="hidden">
+        <div class="form-text text-danger small" data-for="fotografia"></div>
+      </div>
+
+      <div class="col-12">
+        <img id="fotoPreview" src="" alt="Vista previa" class="img-thumbnail" style="max-height:140px; display:none;">
+      </div>
+
       <div class="col-md-6 d-flex align-items-end">
         <div class="form-check">
           <input id="activo" name="activo" type="checkbox" class="form-check-input">
           <label class="form-check-label" for="activo">Activo</label>
         </div>
       </div>
+
       <div class="col-12">
-        <button class="btn btn-success" type="submit">Guardar</button>
-        <a class="btn btn-secondary" href="medicos.html">Cancelar</a>
+        <button class="btn btn-success" type="submit">
+          <i class="bi bi-check2"></i> Guardar
+        </button>
+        <a class="btn btn-secondary" href="medicos.html">
+          <i class="bi bi-x"></i> Cancelar
+        </a>
       </div>
     </form>
   </div>
+
+  <footer>
+    <div class="container text-center">
+      <p>© 2025 IDW S.A</p>
+    </div>
+  </footer>
 
   <script type="module" src="common/js/app/main.js"></script>
   <script type="module" src="common/js/app/medicos/form.js"></script>
