@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,15 @@
       </button>
       <div class="collapse navbar-collapse" id="menuPrincipal">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navLinks"></ul>
-        <button class="btn btn-outline-light ms-3" onclick="cambiarTema()">
+        <button id="btnAdmin" class="btn btn-outline-warning ms-3">
+          <i class="bi bi-person-lock"></i> Admin
+        </button>
+
+        <button id="btnLogout" class="btn btn-outline-danger ms-3" style="display:none;">
+          <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+        </button>
+
+        <button class="btn btn-outline-light ms-2" onclick="cambiarTema()">
           <i id="d1-icon" class="bi bi-moon-fill"></i>
         </button>
       </div>
@@ -62,44 +71,86 @@
     </section>
   </main>
 
-  <footer><div class="container text-center"><p>© 2025 IDW S.A</p></div></footer>
+  <footer>
+    <div class="container text-center">
+      <p>© 2025 IDW S.A</p>
+    </div>
+  </footer>
+
+
 
   <script>
-    function firstUpper(s){return s.charAt(0).toUpperCase()+s.slice(1);}
-    function updateDateTime(){
-      const now=new Date();
-      const weekday=firstUpper(now.toLocaleDateString('es-ES',{weekday:'long'}));
-      const day=now.getDate();
-      const month=firstUpper(now.toLocaleDateString('es-ES',{month:'long'}));
-      const year=now.getFullYear();
-      const time=now.toLocaleTimeString('es-AR',{hour12:true});
-      document.getElementById('datetime').textContent=`${weekday}, ${day} de ${month} de ${year} • ${time}`;
+    function firstUpper(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+    function updateDateTime() {
+      const now = new Date();
+      const weekday = firstUpper(now.toLocaleDateString('es-ES', { weekday: 'long' }));
+      const day = now.getDate();
+      const month = firstUpper(now.toLocaleDateString('es-ES', { month: 'long' }));
+      const year = now.getFullYear();
+      const time = now.toLocaleTimeString('es-AR', { hour12: true });
+      document.getElementById('datetime').textContent = `${weekday}, ${day} de ${month} de ${year} • ${time}`;
     }
-    updateDateTime();setInterval(updateDateTime,1000);
+    updateDateTime(); setInterval(updateDateTime, 1000);
 
     // Menú dinámico por rol
-    document.addEventListener("DOMContentLoaded",()=>{
-      const userRole=localStorage.getItem("userRole");
-      const nav=document.getElementById("navLinks");
-      const baseMenu=[
-        {nombre:"Inicio",href:"index.html"},
-        {nombre:"Acerca de",href:"institucional.html"},
-        {nombre:"Contacto",href:"contacto.html"},
-        {nombre:"Catálogo",href:"catalogo.html"},
-        {nombre:"Sacar turno",href:"reservar-turno.html"}
+    document.addEventListener("DOMContentLoaded", () => {
+      const userRole = localStorage.getItem("userRole");
+      const nav = document.getElementById("navLinks");
+      const baseMenu = [
+        { nombre: "Inicio", href: "index.html" },
+        { nombre: "Acerca de", href: "institucional.html" },
+        { nombre: "Contacto", href: "contacto.html" },
+        { nombre: "Catálogo", href: "catalogo.html" },
+        { nombre: "Sacar turno", href: "reservar-turno.html" }
       ];
-      const adminExtra=[
-        {nombre:"Médicos",href:"medicos.html"},
-        {nombre:"Especialidades",href:"especialidades.html"},
-        {nombre:"Turnos",href:"turnos.html"},
-        {nombre:"Obras Sociales",href:"obras-sociales.html"}
+      const adminExtra = [
+        { nombre: "Médicos", href: "medicos.html" },
+        { nombre: "Especialidades", href: "especialidades.html" },
+        { nombre: "Turnos", href: "turnos.html" },
+        { nombre: "Obras Sociales", href: "obras-sociales.html" }
       ];
-      const menuFinal=userRole==="admin"
-        ?[...baseMenu.slice(0,4),...adminExtra,baseMenu[4]]
-        :baseMenu;
-      nav.innerHTML=menuFinal.map(l=>`<li class="nav-item"><a class="nav-link" href="${l.href}">${l.nombre}</a></li>`).join("");
+      const menuFinal = userRole === "admin" ? [...baseMenu.slice(0, 4), ...adminExtra.slice(0, 3), baseMenu[4], adminExtra[3]] : baseMenu;
+      nav.innerHTML = menuFinal.map(l => {
+        const isActive = l.href === currentPage ? 'active' : '';
+        return `<li class="nav-item"><a class="nav-link ${isActive}" href="${l.href}">${l.nombre}</a></li>`;
+      }).join("");
     });
+
+    let currentPage = window.location.pathname.split("/").pop();
+    if (currentPage === "") {
+      currentPage = "institucional.html";
+    }
+    function updateButtons() {
+      const userRole = localStorage.getItem('userRole');
+      if (userRole === 'admin') {
+        btnAdmin.style.display = 'none';
+        btnLogout.style.display = 'inline-block';
+      } else {
+        btnAdmin.style.display = 'inline-block';
+        btnLogout.style.display = 'none';
+      }
+    }
+
+    btnAdmin.addEventListener('click', () => {
+      window.location.href = 'login.html';
+    });
+
+    btnLogout.addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+
+    btnLogout.addEventListener('click', () => {
+      localStorage.removeItem('userRole');
+      alert('Sesión cerrada.');
+      renderMenu();
+      updateButtons();
+    });
+
+    updateButtons();
   </script>
+  <script type="module" src="common/js/app/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
