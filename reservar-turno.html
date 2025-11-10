@@ -11,7 +11,8 @@
   <link href="common/css/estilo.css" rel="stylesheet" media="screen" />
 </head>
 
-<body data-theme="light">
+<body data-theme="light" data-scope="public">
+
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
@@ -80,20 +81,23 @@
 
     <hr class="my-5">
 
-    <h2 class="h4 mb-3">Turnos próximos</h2>
-    <div class="table-responsive">
-      <table class="table table-striped align-middle">
-        <thead>
-          <tr>
-            <th>Fecha y hora</th>
-            <th>Médico</th>
-            <th>Paciente</th>
-            <th>Contacto</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody id="tbody-proximos"></tbody>
-      </table>
+    <!-- ✅ SOLO VISIBLE PARA ADMIN -->
+    <div id="seccion-admin" style="display: none;">
+      <h2 class="h4 mb-3">Turnos próximos</h2>
+      <div class="table-responsive">
+        <table class="table table-striped align-middle">
+          <thead>
+            <tr>
+              <th>Fecha y hora</th>
+              <th>Médico</th>
+              <th>Paciente</th>
+              <th>Contacto</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-proximos"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -162,6 +166,18 @@
     });
 
     updateButtons();
+
+    // Mostrar/ocultar sección según rol
+    document.addEventListener('DOMContentLoaded', () => {
+      const userRole = sessionStorage.getItem('userRole');
+      const seccionAdmin = document.getElementById('seccion-admin');
+      
+      if (userRole === 'admin') {
+        seccionAdmin.style.display = 'block';
+      } else {
+        seccionAdmin.style.display = 'none';
+      }
+    });
   </script>
   <script type="module" src="common/js/app/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

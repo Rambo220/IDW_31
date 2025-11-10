@@ -1,5 +1,3 @@
-
-
 const KEY = 'idw_bd';
 
 // Helpers básicos 

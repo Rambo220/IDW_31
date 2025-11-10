@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Administración de Turnos</title>
+  <title>Usuarios Registrados</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   <link href="common/css/estilo.css" rel="stylesheet" media="screen" />
@@ -31,28 +31,24 @@
     </div>
   </nav>
 
-  <div class="container py-4">
-    <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
-      <a class="btn btn-success" href="turno-form.html">+ Nuevo Turno</a>
-      <div class="ms-auto" style="min-width: 280px">
-        <input id="filtro" class="form-control" type="search" placeholder="Buscar por paciente, médico o estado...">
-      </div>
-    </div>
-
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Usuarios Registrados</h2>
     <div class="table-responsive">
-      <table class="table table-striped table-hover align-middle">
-        <thead>
+      <table class="table table-striped table-hover align-middle shadow-sm">
+        <thead class="table-dark">
           <tr>
             <th>#ID</th>
-            <th>Fecha y hora</th>
-            <th>Médico</th>
-            <th>Paciente</th>
-            <th>Contacto</th>
-            <th>Estado</th>
-            <th class="text-end">Acciones</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Usuario</th>
+            <th>Email</th>
           </tr>
         </thead>
-        <tbody id="tbody-turnos"></tbody>
+        <tbody id="tbody-usuarios">
+          <tr>
+            <td colspan="5" class="text-center text-muted">Cargando usuarios...</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
@@ -60,6 +56,34 @@
   <footer class="brand-bar text-white text-center py-3 mt-auto">
     © 2025 IDW S.A — Panel Administrativo
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="common/js/app/admin-guard.js"></script>
+  <script type="module" src="common/js/app/main.js"></script>
+
+  <!-- Carga de usuarios desde DummyJSON -->
+  <script type="module">
+    const tbody = document.getElementById("tbody-usuarios");
+    async function cargarUsuarios() {
+      try {
+        const res = await fetch("https://dummyjson.com/users");
+        if (!res.ok) throw new Error("Error HTTP " + res.status);
+        const { users } = await res.json();
+        tbody.innerHTML = users.map(u => `
+          <tr>
+            <td>${u.id}</td>
+            <td>${u.firstName}</td>
+            <td>${u.lastName}</td>
+            <td>${u.username}</td>
+            <td>${u.email}</td>
+          </tr>`).join("");
+      } catch (err) {
+        console.error(err);
+        tbody.innerHTML = `<tr><td colspan="5" class="text-danger text-center">Error al cargar usuarios.</td></tr>`;
+      }
+    }
+    cargarUsuarios();
+  </script>
 
   <script>
     (function () {
@@ -81,18 +105,10 @@
         }
       }
       document.addEventListener('DOMContentLoaded', syncBrand);
-      const body = document.body;
-      const mo = new MutationObserver(syncBrand);
-      mo.observe(body, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+      new MutationObserver(syncBrand).observe(document.body, { attributes: true, attributeFilter: ['data-theme','class'] });
       window.addEventListener('resize', syncBrand);
       window.addEventListener('load', syncBrand);
-      window.syncBrand = syncBrand;
     })();
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="common/js/app/admin-guard.js"></script>
-  <script type="module" src="common/js/app/main.js"></script>
-  <script type="module" src="common/js/app/turnos/list.js"></script>
 </body>
 </html>

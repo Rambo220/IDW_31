@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +9,7 @@
   <link href="common/css/estilo.css" rel="stylesheet" media="screen">
 </head>
 
-<body data-theme="light">
+<body data-theme="light" data-scope="public">
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
@@ -21,6 +20,7 @@
       </button>
       <div class="collapse navbar-collapse" id="menuPrincipal">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navLinks"></ul>
+
         <button id="btnAdmin" class="btn btn-outline-warning ms-3">
           <i class="bi bi-person-lock"></i> Admin
         </button>
@@ -41,9 +41,10 @@
     <div class="row mb-3">
       <div class="col-sm-6">
         <input id="filtro" class="form-control" type="search"
-          placeholder="Buscar por nombre, apellido o especialidad...">
+               placeholder="Buscar por nombre, apellido o especialidad...">
       </div>
     </div>
+
     <div class="table-responsive">
       <table class="table table-striped table-hover align-middle">
         <thead>
@@ -68,13 +69,15 @@
     </div>
   </footer>
 
-  <script type="module" src="common/js/app/main.js"></script>
-  <script type="module" src="common/js/app/medicos/catalogo.js"></script>
-
+  <!-- Menú por rol + botones -->
   <script>
+    let currentPage = window.location.pathname.split("/").pop();
+    if (!currentPage) currentPage = "catalogo.html";
+
     document.addEventListener("DOMContentLoaded", () => {
       const userRole = localStorage.getItem("userRole");
       const nav = document.getElementById("navLinks");
+
       const baseMenu = [
         { nombre: "Inicio", href: "index.html" },
         { nombre: "Acerca de", href: "institucional.html" },
@@ -88,18 +91,20 @@
         { nombre: "Turnos", href: "turnos.html" },
         { nombre: "Obras Sociales", href: "obras-sociales.html" }
       ];
-      const menuFinal = userRole === "admin" ? [...baseMenu.slice(0, 4), ...adminExtra.slice(0, 3), baseMenu[4], adminExtra[3]] : baseMenu;
-      nav.innerHTML = menuFinal.map(l => {
-        const isActive = l.href === currentPage ? 'active' : '';
-        return `<li class="nav-item"><a class="nav-link ${isActive}" href="${l.href}">${l.nombre}</a></li>`;
-      }).join("");
+
+      const menuFinal = userRole === "admin"
+        ? [...baseMenu.slice(0, 4), ...adminExtra.slice(0, 3), baseMenu[4], adminExtra[3]]
+        : baseMenu;
+
+      nav.innerHTML = menuFinal
+        .map(l => `<li class="nav-item"><a class="nav-link ${l.href === currentPage ? 'active' : ''}" href="${l.href}">${l.nombre}</a></li>`)
+        .join("");
+
+      updateButtons();
     });
 
-    let currentPage = window.location.pathname.split("/").pop();
-    if (currentPage === "") {
-      currentPage = "catalogo.html";
-    }
-
+    const btnAdmin = document.getElementById('btnAdmin');
+    const btnLogout = document.getElementById('btnLogout');
 
     function updateButtons() {
       const userRole = localStorage.getItem('userRole');
@@ -117,21 +122,17 @@
     });
 
     btnLogout.addEventListener('click', () => {
-      window.location.href = 'index.html';
-    });
-
-    btnLogout.addEventListener('click', () => {
       localStorage.removeItem('userRole');
       alert('Sesión cerrada.');
-      renderMenu();
       updateButtons();
+      window.location.href = 'index.html';
     });
-
-    updateButtons();
   </script>
-  <script type="module" src="common/js/app/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
-</body>
 
+  <script type="module" src="common/js/app/main.js"></script>
+  <script src="script.js"></script>
+  <script type="module" src="common/js/app/medicos/catalogo.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>

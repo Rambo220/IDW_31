@@ -10,8 +10,8 @@
   <link href="common/css/estilo.css" rel="stylesheet" media="screen">
 </head>
 
-<body data-theme="light">
-  <!-- Navbar -->
+<body data-theme="light" data-scope="public">
+
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
@@ -38,58 +38,68 @@
     </div>
   </nav>
 
-  <!-- Fecha y hora -->
   <div class="nav-datetime">
     <div class="container"><span id="datetime"></span></div>
   </div>
 
-  <!-- Sección principal -->
-  <section class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Contacto IDW S.A</h1>
-      <p>Nuestra información de contacto:</p>
+  <section class="hero" style="position:relative; height:280px; background:url('common/img/FONDO.jpg') center/cover no-repeat;">
+    <div style="position:absolute; inset:0; background:rgba(11,61,145,.6)"></div>
+    <div class="container position-relative text-center text-white" style="z-index:2; padding-top:70px;">
+      <h1 class="fw-bold">Contacto IDW S.A</h1>
+      <p>Nuestra información de contacto</p>
     </div>
   </section>
 
   <main>
-    <section class="info-container">
-      <div class="info-box blue">
-        <h3>Horario de Atención</h3>
-        <p>Lunes a Viernes, 8:00 AM - 6:00 PM</p>
-      </div>
+    <section class="py-5">
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="info-box blue h-100 p-4 rounded-4 shadow-sm">
+              <h3>Horario de Atención</h3>
+              <p class="mb-0">Lunes a Viernes, 8:00 AM - 6:00 PM</p>
+            </div>
+          </div>
 
-      <div class="info-box green">
-        <h3>Teléfono</h3>
-        <p><a href="tel://+5493454961648">+54 9 3454 961648</a></p>
-      </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="info-box green h-100 p-4 rounded-4 shadow-sm">
+              <h3>Teléfono</h3>
+              <p class="mb-0"><a href="tel://+5493454961648">+54 9 3454 961648</a></p>
+            </div>
+          </div>
 
-      <div class="info-box teal">
-        <h3>Email</h3>
-        <p><a href="mailto:IDW_31@gmail.com">IDW_31@gmail.com</a></p>
-      </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="info-box teal h-100 p-4 rounded-4 shadow-sm">
+              <h3>Email</h3>
+              <p class="mb-0"><a href="mailto:IDW_31@gmail.com">IDW_31@gmail.com</a></p>
+            </div>
+          </div>
 
-      <div class="info-box cyan info-box--map">
-        <h3>Dirección</h3>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3406.184242081646!2d-58.02534752460138!3d-31.38147489647238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95ade816212d1dbd%3A0xf5bc8f349572e0e4!2sMonse%C3%B1or%20Tavella%201450%2C%20E3202BCJ%20Concordia%2C%20Entre%20R%C3%ADos!5e0!3m2!1ses-419!2sar!4v1708371462308!5m2!1ses-419!2sar"
-          width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade" title="Ubicación del Centro Médico IDW">
-        </iframe>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="info-box cyan h-100 p-4 rounded-4 shadow-sm">
+              <h3>Dirección</h3>
+              <div class="ratio ratio-4x3">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3406.184242081646!2d-58.02534752460138!3d-31.38147489647238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95ade816212d1dbd%3A0xf5bc8f349572e0e4!2sMonse%C3%B1or%20Tavella%201450%2C%20E3202BCJ%20Concordia%2C%20Entre%20R%C3%ADos!5e0!3m2!1ses-419!2sar!4v1708371462308!5m2!1ses-419!2sar"
+                  style="border:0;" allowfullscreen="" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade" title="Ubicación del Centro Médico IDW" class="rounded-3">
+                </iframe>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container text-center">
       <p>© 2025 IDW S.A</p>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
-    // Fecha y hora
     function firstUpper(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
     function updateDateTime() {
       const now = new Date();
