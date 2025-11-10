@@ -501,6 +501,7 @@ footer {
 .delay-4 { animation-delay: .4s !important; }
 .delay-5 { animation-delay: .5s !important; }
 
+/* FIX 1: sin flotado */
 .info-box:hover {
   animation: inherit;
 }
