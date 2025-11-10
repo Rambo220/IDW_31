@@ -20,7 +20,7 @@ form?.addEventListener("submit", async (e) => {
     // Llamado a la API pública de DummyJSON
     const res = await fetch("https://dummyjson.com/auth/login", {
       method: "POST",
-      headers: { 
+      headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
@@ -30,16 +30,26 @@ form?.addEventListener("submit", async (e) => {
     const data = await res.json();
     console.log("[dummyLogin] Respuesta del servidor:", data);
 
-    // Si las credenciales son incorrectas
     if (!res.ok) {
       alert(data.message || "Error en el inicio de sesión. Verificá tus datos.");
       return;
     }
 
-    // Guarda los datos en sessionStorage
+    // Guardar datos de sesión
     sessionStorage.setItem("authUser", JSON.stringify(data));
-    sessionStorage.setItem("accessToken", data.token); // token 
-    localStorage.setItem("userRole", "admin"); 
+    sessionStorage.setItem("accessToken", data.token);
+
+    // Guardar rol en ambos lugares
+    sessionStorage.setItem("userRole", "admin");
+    localStorage.setItem("userRole", "admin");
+
+    // Sincronizar roles para evitar pérdida por Live Server o recarga
+    window.addEventListener("load", () => {
+      const rol = localStorage.getItem("userRole");
+      if (rol && !sessionStorage.getItem("userRole")) {
+        sessionStorage.setItem("userRole", rol);
+      }
+    });
 
     alert(`Bienvenido/a ${data.firstName ?? username}!`);
 
@@ -53,7 +63,18 @@ form?.addEventListener("submit", async (e) => {
     const fakeToken = `fake-token-${Date.now()}`;
     sessionStorage.setItem("accessToken", fakeToken);
     sessionStorage.setItem("authUser", JSON.stringify({ username }));
+
+    // Guardar rol también en ambos lugares
+    sessionStorage.setItem("userRole", "admin");
     localStorage.setItem("userRole", "admin");
+
+    // Sincronizar roles también en modo offline
+    window.addEventListener("load", () => {
+      const rol = localStorage.getItem("userRole");
+      if (rol && !sessionStorage.getItem("userRole")) {
+        sessionStorage.setItem("userRole", rol);
+      }
+    });
 
     alert(`Inicio de sesión local como ${username}.`);
     window.location.href = "index-admin.html";

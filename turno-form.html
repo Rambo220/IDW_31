@@ -33,7 +33,6 @@
           <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li>
           <li class="nav-item"><a class="nav-link" href="reservar-turno.html">Sacar turno</a></li>
           <li class="nav-item"><a class="nav-link" href="obras-sociales.html">Obras Sociales</a></li>
-
         </ul>
         <button class="btn btn-outline-light ms-3" onclick="logoutAdmin()">
           <i class="bi bi-box-arrow-right"></i> Cerrar sesión
@@ -99,13 +98,30 @@
 
   <!-- Protección de acceso administrador -->
   <script>
-    if (localStorage.getItem("isAdmin") !== "true") {
-      alert("Acceso restringido. Solo para administradores.");
-      location.href = "login.html";
-    }
+    (function () {
+      // Buscar rol tanto en sessionStorage como en localStorage
+      let role = sessionStorage.getItem("userRole") || localStorage.getItem("userRole");
 
+      // Si no lo encuentra, intenta sincronizar
+      if (!role) {
+        const rolLocal = localStorage.getItem("userRole");
+        if (rolLocal) {
+          sessionStorage.setItem("userRole", rolLocal);
+          role = rolLocal;
+        }
+      }
+
+      // Si sigue sin rol o no es admin → bloqueo
+      if (role !== "admin") {
+        alert("⚠️ Acceso restringido. Solo para administradores.");
+        location.href = "login.html";
+      }
+    })();
+
+    // Cerrar sesión correctamente
     function logoutAdmin() {
-      localStorage.removeItem("isAdmin");
+      sessionStorage.clear();
+      localStorage.removeItem("userRole");
       location.href = "index.html";
     }
   </script>
