@@ -4,28 +4,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portal</title>
+  <title>Portal - Centro Médico IDW</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   <link href="common/css/estilo.css" rel="stylesheet" media="screen" />
 </head>
 
-<body data-theme="light">
-  <!-- Navbar -->
+<body data-theme="light" data-scope="public">
+
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
-        <img src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo Centro Médico IDW" class="logo" />
+        <img class="logo" src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo Centro Médico IDW">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
-        aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="menuPrincipal">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navLinks"></ul>
 
-        <!-- Botones Admin / Logout -->
         <button id="btnAdmin" class="btn btn-outline-warning ms-3">
           <i class="bi bi-person-lock"></i> Admin
         </button>
@@ -43,21 +42,20 @@
 
   <!-- Fecha y hora -->
   <div class="nav-datetime">
-    <div class="container">
-      <span id="datetime"></span>
-    </div>
+    <div class="container"><span id="datetime"></span></div>
   </div>
-
-  <section class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Bienvenido al Centro Médico IDW S.A</h1>
-      <p>Conoce a nuestros profesionales</p>
+  
+  <!-- Hero -->
+  <section class="hero" style="position:relative; height:280px; background:url('common/img/FONDO.jpg') center/cover no-repeat;">
+    <div style="position:absolute; inset:0; background:rgba(11,61,145,.6)"></div>
+    <div class="container position-relative text-center text-white" style="z-index:2; padding-top:70px;">
+      <h1 class="fw-bold">Bienvenido al Centro Médico IDW S.A</h1>
+      <p>Tu salud en buenas manos</p>
     </div>
   </section>
 
   <main>
-    <!-- Sección de gestión del centro -->
+    <!-- Gestión -->
     <section class="container py-5">
       <h2 class="text-center mb-4">Gestión del Centro</h2>
       <div class="row justify-content-center g-4">
@@ -71,81 +69,10 @@
       </div>
     </section>
 
-    <!-- NUEVOS PROFESIONALES -->
-    <section class="container py-5">
-      <h2 class="text-center mb-4">Nuestros Profesionales</h2>
-      <div class="row g-4">
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="card h-100 shadow-sm">
-            <img src="common/img/doctores/d1.jpg" class="card-img-top" alt="Dr. Ramiro Borgo">
-            <div class="card-body text-center">
-              <h5 class="card-title">Dr. Ramiro Borgo</h5>
-              <p class="card-text">Especialidad: Cardiología</p>
-              <p class="card-text">Médico clínico con enfoque integral en el bienestar general.</p>
-              <p class="card-text">Experiencia: 12 años</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="card h-100 shadow-sm">
-            <img src="common/img/doctores/d2.jpg" class="card-img-top" alt="Dr. Martin Mansilla">
-            <div class="card-body text-center">
-              <h5 class="card-title">Dr. Martin Mansilla</h5>
-              <p class="card-text">Especialidad: Pediatría</p>
-              <p class="card-text">Pediatra especializado en control del desarrollo infantil.</p>
-              <p class="card-text">Experiencia: 9 años</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="card h-100 shadow-sm">
-            <img src="common/img/doctores/d3.jpg" class="card-img-top" alt="Dr. Fabian Brites">
-            <div class="card-body text-center">
-              <h5 class="card-title">Dr. Fabian Brites</h5>
-              <p class="card-text">Especialidad: Dermatología</p>
-              <p class="card-text">Dermatólogo con experiencia en tratamientos estéticos y clínicos.</p>
-              <p class="card-text">Experiencia: 7 años</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="card h-100 shadow-sm">
-            <img src="common/img/doctores/d4.jpg" class="card-img-top" alt="Dra. Lucia Benavente">
-            <div class="card-body text-center">
-              <h5 class="card-title">Dra. Lucia Benavente</h5>
-              <p class="card-text">Especialidad: Traumatología</p>
-              <p class="card-text">Traumatóloga enfocada en rehabilitación y lesiones deportivas.</p>
-              <p class="card-text">Experiencia: 6 años</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="card h-100 shadow-sm">
-            <img src="common/img/doctores/d5.jpg" class="card-img-top" alt="Dr. Martin Bourlot">
-            <div class="card-body text-center">
-              <h5 class="card-title">Dr. Martin Bourlot</h5>
-              <p class="card-text">Especialidad: Traumatología</p>
-              <p class="card-text">Especialista en ortopedia y traumatología general.</p>
-              <p class="card-text">Experiencia: 10 años</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="card h-100 shadow-sm">
-            <img src="common/img/doctores/d6.jpg" class="card-img-top" alt="Dra. Ayelen Doubña">
-            <div class="card-body text-center">
-              <h5 class="card-title">Dra. Ayelen Doubña</h5>
-              <p class="card-text">Especialidad: Ginecología</p>
-              <p class="card-text">Ginecóloga con atención integral en salud reproductiva.</p>
-              <p class="card-text">Experiencia: 8 años</p>
-            </div>
-          </div>
-        </div>
+    <!-- Catálogo dinámico  -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="row g-4" id="catalogo-medicos"></div>
       </div>
     </section>
   </main>
@@ -156,9 +83,8 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
-    // Reloj
+    // ---- Fecha y hora ----
     function firstUpper(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
     function updateDateTime() {
       const now = new Date();
@@ -173,42 +99,40 @@
     updateDateTime();
     setInterval(updateDateTime, 1000);
 
-    // Generar menú dinámico según rol
-    function renderMenu() {
-      const userRole = localStorage.getItem('userRole');
-      const nav = document.getElementById('navLinks');
-      if (!nav) return;
+    // ---- Menú dinámico por rol ----
+    let currentPage = window.location.pathname.split("/").pop();
+    if (currentPage === "") currentPage = "index.html";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const userRole = localStorage.getItem("userRole");
+      const nav = document.getElementById("navLinks");
 
       const baseMenu = [
-        { nombre: 'Inicio', href: 'index.html' },
-        { nombre: 'Acerca de', href: 'institucional.html' },
-        { nombre: 'Contacto', href: 'contacto.html' },
-        { nombre: 'Catálogo', href: 'catalogo.html' },
-        { nombre: 'Sacar turno', href: 'reservar-turno.html' }
+        { nombre: "Inicio", href: "index.html" },
+        { nombre: "Acerca de", href: "institucional.html" },
+        { nombre: "Contacto", href: "contacto.html" },
+        { nombre: "Catálogo", href: "catalogo.html" },
+        { nombre: "Sacar turno", href: "reservar-turno.html" }
       ];
-
       const adminExtra = [
-        { nombre: 'Médicos', href: 'medicos.html' },
-        { nombre: 'Especialidades', href: 'especialidades.html' },
-        { nombre: 'Turnos', href: 'turnos.html' },
-        { nombre: 'Obras Sociales', href: 'obras-sociales.html' }
+        { nombre: "Médicos", href: "medicos.html" },
+        { nombre: "Especialidades", href: "especialidades.html" },
+        { nombre: "Turnos", href: "turnos.html" },
+        { nombre: "Obras Sociales", href: "obras-sociales.html" }
       ];
 
-      const menuFinal = userRole === "admin" ? [...baseMenu.slice(0, 4), ...adminExtra.slice(0, 3), baseMenu[4], adminExtra[3]] : baseMenu;
-      nav.innerHTML = menuFinal.map(l => {
-        const isActive = l.href === currentPage ? 'active' : '';
-        return `<li class="nav-item"><a class="nav-link ${isActive}" href="${l.href}">${l.nombre}</a></li>`;
-      }).join("");
-    };
+      const menuFinal = userRole === "admin"
+        ? [...baseMenu.slice(0, 4), ...adminExtra.slice(0, 3), baseMenu[4], adminExtra[3]]
+        : baseMenu;
 
-    let currentPage = window.location.pathname.split("/").pop();
-    if (currentPage === "") {
-      currentPage = "index.html";
-    }
+      nav.innerHTML = menuFinal
+        .map(l => `<li class="nav-item"><a class="nav-link ${l.href === currentPage ? 'active' : ''}" href="${l.href}">${l.nombre}</a></li>`)
+        .join("");
 
-    renderMenu();
+      updateButtons();
+    });
 
-    // Control de sesión
+    // ---- Botones Admin / Logout ----
     const btnAdmin = document.getElementById('btnAdmin');
     const btnLogout = document.getElementById('btnLogout');
 
@@ -228,22 +152,17 @@
     });
 
     btnLogout.addEventListener('click', () => {
-      window.location.href = 'index.html';
-    });
-
-    btnLogout.addEventListener('click', () => {
       localStorage.removeItem('userRole');
       alert('Sesión cerrada.');
-      renderMenu();
       updateButtons();
+      window.location.href = 'index.html';
     });
-
-    updateButtons();
   </script>
 
-  <script type="module" src="common/js/app/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
-</body>
+  <script type="module" src="common/js/app/main.js"></script>
+  <script type="module" src="common/js/app/medicos/catalogo-cards.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+</body>
 </html>

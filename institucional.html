@@ -10,7 +10,8 @@
   <link href="common/css/estilo.css" rel="stylesheet" media="screen">
 </head>
 
-<body data-theme="light">
+<body data-theme="light" data-scope="public">
+
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
@@ -40,11 +41,12 @@
     <div class="container"><span id="datetime"></span></div>
   </div>
 
-  <section class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Información Institucional</h1>
-      <p>Conoce nuestra misión, visión y valores</p>
+  <!-- HERO CON IMAGEN IGUAL AL ADMIN -->
+  <section class="hero" style="position:relative; height:280px; background:url('common/img/FONDO.jpg') center/cover no-repeat;">
+    <div style="position:absolute; inset:0; background:rgba(11,61,145,.6)"></div>
+    <div class="container position-relative text-center text-white" style="z-index:2; padding-top:70px;">
+      <h1 class="fw-bold">Información Institucional</h1>
+      <p>Conocé nuestra misión, visión y valores</p>
     </div>
   </section>
 
@@ -76,8 +78,6 @@
       <p>© 2025 IDW S.A</p>
     </div>
   </footer>
-
-
 
   <script>
     function firstUpper(s) { return s.charAt(0).toUpperCase() + s.slice(1); }

@@ -1,4 +1,3 @@
-// Reutilizo la API del servicio (ya definida en el proyecto)
 import { getMedicoById, getEspecialidadNombreById } from './service.js';
 
 // Leo el id desde la URL (ej: medico-detalle.html?id=3)

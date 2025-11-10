@@ -57,6 +57,44 @@
     </div>
   </footer>
 
+
+  <script>
+    (function () {
+      function syncBrand() {
+        const nav = document.querySelector('.navbar');
+        const footer = document.querySelector('footer');
+        const dateStrip = document.querySelector('.nav-datetime');
+      
+        if (!nav || !footer) return;
+      
+        const navStyles = getComputedStyle(nav);
+        const bg = navStyles.backgroundColor || navStyles.getPropertyValue('background-color');
+        const color = navStyles.color || navStyles.getPropertyValue('color');
+      
+        footer.style.backgroundColor = bg;
+        footer.style.color = color;
+        footer.style.borderTop = 'none';
+      
+        if (dateStrip) {
+          dateStrip.style.backgroundColor = bg;
+          dateStrip.style.color = color;
+          dateStrip.style.borderTop = '1px solid rgba(255,255,255,0.08)';
+        }
+      }
+  
+      document.addEventListener('DOMContentLoaded', syncBrand);
+  
+      const body = document.body;
+      const mo = new MutationObserver(syncBrand);
+      mo.observe(body, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+  
+      window.addEventListener('resize', syncBrand);
+      window.addEventListener('load', syncBrand);
+  
+      window.syncBrand = syncBrand;
+    })();
+  </script>
+
   <script type="module" src="common/js/app/main.js"></script>
   <script type="module" src="common/js/app/obras-sociales/form.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
