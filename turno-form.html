@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,7 +18,7 @@
         <img src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo Centro Médico IDW" class="logo" />
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
-              aria-controls="menuPrincipal" aria-expanded="false" aria-label="Menú">
+        aria-controls="menuPrincipal" aria-expanded="false" aria-label="Menú">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -31,6 +32,7 @@
           <li class="nav-item"><a class="nav-link" href="especialidades.html">Especialidades</a></li>
           <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li>
           <li class="nav-item"><a class="nav-link" href="reservar-turno.html">Sacar turno</a></li>
+          <li class="nav-item"><a class="nav-link" href="obras-sociales.html">Obras Sociales</a></li>
         </ul>
         <button class="btn btn-outline-light ms-3" onclick="logoutAdmin()">
           <i class="bi bi-box-arrow-right"></i> Cerrar sesión
@@ -96,20 +98,38 @@
 
   <!-- Protección de acceso administrador -->
   <script>
-    if (localStorage.getItem("isAdmin") !== "true") {
-      alert("Acceso restringido. Solo para administradores.");
-      location.href = "login.html";
-    }
+    (function () {
+      // Buscar rol tanto en sessionStorage como en localStorage
+      let role = sessionStorage.getItem("userRole") || localStorage.getItem("userRole");
 
+      // Si no lo encuentra, intenta sincronizar
+      if (!role) {
+        const rolLocal = localStorage.getItem("userRole");
+        if (rolLocal) {
+          sessionStorage.setItem("userRole", rolLocal);
+          role = rolLocal;
+        }
+      }
+
+      // Si sigue sin rol o no es admin → bloqueo
+      if (role !== "admin") {
+        alert("⚠️ Acceso restringido. Solo para administradores.");
+        location.href = "login.html";
+      }
+    })();
+
+    // Cerrar sesión correctamente
     function logoutAdmin() {
-      localStorage.removeItem("isAdmin");
+      sessionStorage.clear();
+      localStorage.removeItem("userRole");
       location.href = "index.html";
     }
   </script>
-  
+
   <script type="module" src="common/js/app/main.js"></script>
   <script type="module" src="common/js/app/turnos/form.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>

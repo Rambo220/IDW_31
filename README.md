@@ -11,8 +11,8 @@ Trabajo Final Integrador - Grupo 31 - INTRODUCCIÓN AL DESARROLLO WEB - 2025 2do
 - Mansilla Martin
 
 # ACLARACIONES
-El botón de Administrador se encuentra disponible únicamente en la sección “Inicio” del sitio.
+Uno de los usuarios para ingresar al modo Administrador es: 
+Usuario: emilys
+Contraseña: emilyspass
 
-Para acceder al panel administrativo:
-    Usuario: admin
-    Contraseña: 1234
+Luego en el catálogo de Usuarios están los demás usuarios a utilizar.
