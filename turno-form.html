@@ -24,15 +24,12 @@
 
       <div class="collapse navbar-collapse" id="menuPrincipal">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="institucional.html">Acerca de</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
-          <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
+          <li class="nav-item"><a class="nav-link" href="index-admin.html">Inicio</a></li>
           <li class="nav-item"><a class="nav-link" href="medicos.html">Médicos</a></li>
           <li class="nav-item"><a class="nav-link" href="especialidades.html">Especialidades</a></li>
           <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li>
-          <li class="nav-item"><a class="nav-link" href="reservar-turno.html">Sacar turno</a></li>
           <li class="nav-item"><a class="nav-link" href="obras-sociales.html">Obras Sociales</a></li>
+          <li class="nav-item"><a class="nav-link" href="usuarios.html">Usuarios</a></li>
         </ul>
         <button class="btn btn-outline-light ms-3" onclick="logoutAdmin()">
           <i class="bi bi-box-arrow-right"></i> Cerrar sesión
@@ -56,9 +53,15 @@
       </div>
 
       <div class="col-md-6">
-        <label for="fechaISO" class="form-label">Fecha y hora</label>
-        <input id="fechaISO" name="fechaISO" type="datetime-local" class="form-control" required>
-        <div class="form-text text-danger small" data-for="fechaISO"></div>
+        <label for="fecha" class="form-label">Fecha</label>
+        <input id="fecha" name="fecha" type="date" class="form-control" required />
+        <div class="form-text text-danger small" data-for="fecha"></div>
+      </div>
+      
+      <div class="col-md-6">
+        <label for="hora" class="form-label">Hora</label>
+        <select id="hora" name="hora" class="form-select" required></select>
+        <div class="form-text text-danger small" data-for="hora"></div>
       </div>
 
       <div class="col-md-6">
