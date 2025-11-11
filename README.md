@@ -11,7 +11,8 @@ Trabajo Final Integrador - Grupo 31 - INTRODUCCIÓN AL DESARROLLO WEB - 2025 2do
 - Mansilla Martin
 
 # ACLARACIONES
-Ejemplo de usuario admin que está registrado es:
-
+Uno de los usuarios para ingresar al modo Administrador es: 
 Usuario: emilys
 Contraseña: emilyspass
+
+Luego en el catálogo de Usuarios están los demás usuarios a utilizar.
