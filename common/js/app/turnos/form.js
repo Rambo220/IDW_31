@@ -1,12 +1,13 @@
 // Este archivo maneja el alta y edición de turnos.
 
-import { listMedicos, getTurnoById, createTurno, updateTurno, listTurnos } from '../medicos/service.js';
+import { listObrasSociales, listMedicos, getTurnoById, createTurno, updateTurno, listTurnos } from '../medicos/service.js';
 
 const form = document.getElementById('form-turno');
 const selMedico = document.getElementById('medicoId');
 const inputFecha = document.getElementById('fecha');
 const selHora = document.getElementById('hora');
 const titulo = document.getElementById('form-title');
+const selObra = document.getElementById('obraSocialId'); 
 
 const params = new URLSearchParams(location.search);
 const editId = params.get('id');
@@ -21,6 +22,13 @@ function cargarMedicos() {
     op.textContent = `${m.apellido}, ${m.nombre}`;
     selMedico.appendChild(op);
   });
+}
+
+// Cargo las obras sociales en el select
+function cargarObras() {
+  const obras = listObrasSociales() || [];
+  selObra.innerHTML = `<option value="">(Sin obra social)</option>` +
+    obras.map(o => `<option value="${o.id}">${o.nombre}</option>`).join('');
 }
 
 // --- MANEJO DE HORARIOS ---
@@ -83,7 +91,9 @@ function configurarMinFecha() {
   const yyyy = hoy.getFullYear();
   const mm = String(hoy.getMonth() + 1).padStart(2, '0');
   const dd = String(hoy.getDate()).padStart(2, '0');
-  inputFecha.min = `${yyyy}-${mm}-${dd}`;
+  const hoyISO = `${yyyy}-${mm}-${dd}`;
+  inputFecha.min = hoyISO;
+  if (!inputFecha.value) inputFecha.value = hoyISO;
 }
 
 // --- VALIDACIÓN Y ERRORES ---
@@ -145,6 +155,7 @@ function cargarTurno() {
   form.paciente.value = turno.paciente;
   form.contacto.value = turno.contacto;
   form.estado.value = turno.estado;
+  form.obraSocialId.value = turno.obraSocialId || '';
 
   actualizarHorasDisponibles();
 }
@@ -158,7 +169,8 @@ form.addEventListener('submit', (e) => {
     hora: form.hora.value,
     paciente: form.paciente.value,
     contacto: form.contacto.value,
-    estado: form.estado.value
+    estado: form.estado.value,
+    obraSocialId: form.obraSocialId.value ? Number(form.obraSocialId.value) : null,
   };
 
   if (!validar(datos)) return;
@@ -168,7 +180,8 @@ form.addEventListener('submit', (e) => {
     fechaISO: `${datos.fecha}T${datos.hora}`,
     paciente: datos.paciente,
     contacto: datos.contacto,
-    estado: datos.estado
+    estado: datos.estado,
+    obraSocialId: datos.obraSocialId,
   };
 
   if (editId) {
@@ -188,6 +201,7 @@ function init() {
   cargarMedicos();
   poblarHorasBase();
   configurarMinFecha();
+  cargarObras();
   
   if (editId) {
     cargarTurno();
