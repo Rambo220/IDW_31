@@ -11,28 +11,24 @@
   <link href="common/css/estilo.css" rel="stylesheet" media="screen" />
 </head>
 
-<body data-theme="light">
-  <nav class="navbar navbar-expand-lg navbar-dark">
+<body class="admin" data-theme="light" data-scope="admin">
+
+  <nav class="navbar navbar-expand-lg navbar-dark brand-bar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="index-admin.html">
         <img src="common/img/Logo_del_Centro_Medico_IDW.png" alt="Logo Centro Médico IDW" class="logo" />
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
-        aria-controls="menuPrincipal" aria-expanded="false" aria-label="Menú">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuAdmin">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="menuPrincipal">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index-admin.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="medicos.html">Médicos</a></li>
-          <li class="nav-item"><a class="nav-link" href="especialidades.html">Especialidades</a></li>
-          <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li>
-          <li class="nav-item"><a class="nav-link" href="obras-sociales.html">Obras Sociales</a></li>
-          <li class="nav-item"><a class="nav-link" href="usuarios.html">Usuarios</a></li>
-        </ul>
-        <button class="btn btn-outline-light ms-3" onclick="logoutAdmin()">
+      <div class="collapse navbar-collapse" id="menuAdmin">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navLinksAdmin"></ul>
+        <span id="welcomeUser" class="navbar-text ms-3">Hola, Admin</span>
+        <button id="btnLogout" class="btn btn-outline-light ms-3">
           <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+        </button>
+        <button id="btnTheme" class="btn btn-outline-light ms-2" title="Cambiar tema">
+          <i id="d1-icon" class="bi bi-moon-fill"></i>
         </button>
       </div>
     </div>
@@ -64,7 +60,7 @@
         <input id="fecha" name="fecha" type="date" class="form-control" required />
         <div class="form-text text-danger small" data-for="fecha"></div>
       </div>
-      
+
       <div class="col-md-6">
         <label for="hora" class="form-label">Hora</label>
         <select id="hora" name="hora" class="form-select" required></select>
@@ -106,36 +102,37 @@
     </div>
   </footer>
 
-  <!-- Protección de acceso administrador -->
+
   <script>
     (function () {
-      // Buscar rol tanto en sessionStorage como en localStorage
-      let role = sessionStorage.getItem("userRole") || localStorage.getItem("userRole");
-
-      // Si no lo encuentra, intenta sincronizar
-      if (!role) {
-        const rolLocal = localStorage.getItem("userRole");
-        if (rolLocal) {
-          sessionStorage.setItem("userRole", rolLocal);
-          role = rolLocal;
+      function syncBrand() {
+        const nav = document.querySelector('.navbar');
+        const footer = document.querySelector('footer');
+        const dateStrip = document.querySelector('.nav-datetime');
+        if (!nav || !footer) return;
+        const navStyles = getComputedStyle(nav);
+        const bg = navStyles.backgroundColor;
+        const color = navStyles.color;
+        footer.style.backgroundColor = bg;
+        footer.style.color = color;
+        footer.style.borderTop = 'none';
+        if (dateStrip) {
+          dateStrip.style.backgroundColor = bg;
+          dateStrip.style.color = color;
+          dateStrip.style.borderTop = '1px solid rgba(255,255,255,0.08)';
         }
       }
-
-      // Si sigue sin rol o no es admin → bloqueo
-      if (role !== "admin") {
-        alert("⚠️ Acceso restringido. Solo para administradores.");
-        location.href = "login.html";
-      }
+      document.addEventListener('DOMContentLoaded', syncBrand);
+      const body = document.body;
+      const mo = new MutationObserver(syncBrand);
+      mo.observe(body, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+      window.addEventListener('resize', syncBrand);
+      window.addEventListener('load', syncBrand);
+      window.syncBrand = syncBrand;
     })();
-
-    // Cerrar sesión correctamente
-    function logoutAdmin() {
-      sessionStorage.clear();
-      localStorage.removeItem("userRole");
-      location.href = "index.html";
-    }
   </script>
 
+  <script src="common/js/app/admin-guard.js"></script>
   <script type="module" src="common/js/app/main.js"></script>
   <script type="module" src="common/js/app/turnos/form.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
