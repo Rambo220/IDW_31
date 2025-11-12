@@ -209,6 +209,8 @@ form.addEventListener('submit', (e) => {
 
   const fechaISO = `${fecha}T${hora}`;
 
+  /*----------------------------------------------------------- */
+   /* Guarda el turno en LocalStorage mediante createTurno() */
   createTurno({
     medicoId,
     fechaISO,
@@ -218,6 +220,7 @@ form.addEventListener('submit', (e) => {
     obraSocialId: obraId,
     precioFinal: precio,
   });
+  /*----------------------------------------------------------- */
 
   alert('Turno registrado ');
   form.reset();
