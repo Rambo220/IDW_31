@@ -1,23 +1,18 @@
-// Reserva pública con horarios 08:00–18:00 cada 30' y bloqueo de duplicados.
-// Calcula el precio (50 % si la obra social del paciente está aceptada por el médico).
-// Si el paciente no tiene obra social, aplica un recargo del 25 %.
-
 import {
   listMedicos,
   getMedicoById,
-  listTurnos,
-  createTurno,
+  listTurnos,  
+  createTurno,  
   listObrasSociales,
 } from '../medicos/service.js';
 
 const form        = document.getElementById('form-reserva');
 const selMedico   = document.getElementById('medicoId');
-const inputFecha  = document.getElementById('fecha');          
-const selHora     = document.getElementById('hora');           
-const selObra     = document.getElementById('obraSocialId');   
-const precioEl    = document.getElementById('precioConsulta'); 
+const inputFecha  = document.getElementById('fecha');
+const selHora     = document.getElementById('hora');
+const selObra     = document.getElementById('obraSocialId');
+const precioEl    = document.getElementById('precioConsulta');
 const tbodyProx   = document.getElementById('tbody-proximos');
-
 
 function setMsg(name, msg = '') {
   const el = form?.querySelector(`.form-text[data-for="${name}"]`);
@@ -30,7 +25,6 @@ function clearMsgs() {
 /*Catálogos*/
 function cargarMedicos() {
   const medicos = (listMedicos() || []).filter(m => m.activo);
-  console.log('👉 LISTA DE MÉDICOS:', medicos); // para verificar valorConsulta
   selMedico.innerHTML = '<option value="" disabled selected>Seleccione un médico...</option>';
   medicos.forEach(m => {
     const op = document.createElement('option');
@@ -46,7 +40,9 @@ function cargarObras() {
     obras.map(o => `<option value="${o.id}">${o.nombre}</option>`).join('');
 }
 
-/*Horas*/
+/*---------------------------------------------------------------- */
+
+/* Genera la grilla base de horarios (08:00–17:30, cada 30')*/
 function generarHoras() {
   const horas = [];
   for (let h = 8; h < 18; h++) {
@@ -68,6 +64,7 @@ function fechaISOaFecha(iso) {
   return String(iso).split('T')[0];
 }
 
+/* Actualiza las horas disponibles según médico y fecha seleccionados*/
 function actualizarHorasDisponibles() {
   Array.from(selHora.options).forEach(opt => { if (opt.value) opt.disabled = false; });
 
@@ -75,6 +72,7 @@ function actualizarHorasDisponibles() {
   const fecha = (inputFecha.value || '').trim();
   if (!medicoId || !fecha) return;
 
+  /* listTurnos() → lectura desde LocalStorage para conocer horarios ya ocupados */
   const ocupados = new Set(
     (listTurnos() || [])
       .filter(t => Number(t.medicoId) === medicoId && fechaISOaFecha(t.fechaISO) === fecha)
@@ -89,7 +87,7 @@ function actualizarHorasDisponibles() {
   if (selHora.value && ocupados.has(selHora.value)) selHora.value = '';
 }
 
-/*Fecha*/
+/*Configura la fecha mínima del input fecha al día actual*/
 function configurarMinFecha() {
   const hoy = new Date();
   const yyyy = hoy.getFullYear();
@@ -99,6 +97,7 @@ function configurarMinFecha() {
   inputFecha.min = hoyISO;
   if (!inputFecha.value) inputFecha.value = hoyISO;
 }
+/*----------------------------------------------------------- */
 
 /*Precio*/
 function calcularPrecio() {
@@ -124,16 +123,16 @@ function calcularPrecio() {
     : false;
 
   if (acepta) {
-    final = base * 0.5; // 50 % descuento
+    final = base * 0.5;
   } else if (!obraId) {
-    final = base * 1.25; // 25 % recargo
+    final = base * 1.25;
   }
 
   precioEl.textContent = `$ ${final.toLocaleString('es-AR', { minimumFractionDigits: 2 })}`;
   return final;
 }
 
-/*Próximos turnos*/
+/*Renderiza los próximos turnos en la tabla*/
 function renderProximos() {
   const items = (listTurnos() || [])
     .slice()
@@ -167,7 +166,7 @@ function renderProximos() {
   }).join('');
 }
 
-/*Validación + submit*/
+/*Validación de datos*/
 function validar(datos) {
   clearMsgs();
   let ok = true;
@@ -187,12 +186,13 @@ function validar(datos) {
   return ok;
 }
 
+/*Manejo de eventos*/
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const medicoId = selMedico.value;
-  const fecha    = inputFecha.value;   
-  const hora     = selHora.value;      
+  const fecha    = inputFecha.value;
+  const hora     = selHora.value;
   const obraId   = selObra.value ? Number(selObra.value) : null;
   const precio   = calcularPrecio() || null;
 
@@ -208,6 +208,7 @@ form.addEventListener('submit', (e) => {
   if (!validar(datos)) return;
 
   const fechaISO = `${fecha}T${hora}`;
+
   createTurno({
     medicoId,
     fechaISO,
@@ -220,6 +221,7 @@ form.addEventListener('submit', (e) => {
 
   alert('Turno registrado ');
   form.reset();
+
   configurarMinFecha();
   poblarHorasBase();
   actualizarHorasDisponibles();
@@ -227,12 +229,11 @@ form.addEventListener('submit', (e) => {
   renderProximos();
 });
 
-/*Eventos*/
 selMedico?.addEventListener('change', () => { actualizarHorasDisponibles(); calcularPrecio(); });
 inputFecha?.addEventListener('change', actualizarHorasDisponibles);
 selObra?.addEventListener('change', calcularPrecio);
 
-/*init*/
+/*Inicialización*/
 function init() {
   cargarMedicos();
   cargarObras();
