@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,7 +42,7 @@
     <div class="row mb-3">
       <div class="col-sm-6">
         <input id="filtro" class="form-control" type="search"
-               placeholder="Buscar por nombre, apellido o especialidad...">
+          placeholder="Buscar por nombre, apellido o especialidad...">
       </div>
     </div>
 
@@ -74,34 +75,6 @@
     let currentPage = window.location.pathname.split("/").pop();
     if (!currentPage) currentPage = "catalogo.html";
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const userRole = localStorage.getItem("userRole");
-      const nav = document.getElementById("navLinks");
-
-      const baseMenu = [
-        { nombre: "Inicio", href: "index.html" },
-        { nombre: "Acerca de", href: "institucional.html" },
-        { nombre: "Contacto", href: "contacto.html" },
-        { nombre: "Catálogo", href: "catalogo.html" },
-        { nombre: "Sacar turno", href: "reservar-turno.html" }
-      ];
-      const adminExtra = [
-        { nombre: "Médicos", href: "medicos.html" },
-        { nombre: "Especialidades", href: "especialidades.html" },
-        { nombre: "Turnos", href: "turnos.html" },
-        { nombre: "Obras Sociales", href: "obras-sociales.html" }
-      ];
-
-      const menuFinal = userRole === "admin"
-        ? [...baseMenu.slice(0, 4), ...adminExtra.slice(0, 3), baseMenu[4], adminExtra[3]]
-        : baseMenu;
-
-      nav.innerHTML = menuFinal
-        .map(l => `<li class="nav-item"><a class="nav-link ${l.href === currentPage ? 'active' : ''}" href="${l.href}">${l.nombre}</a></li>`)
-        .join("");
-
-      updateButtons();
-    });
 
     const btnAdmin = document.getElementById('btnAdmin');
     const btnLogout = document.getElementById('btnLogout');
@@ -135,4 +108,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

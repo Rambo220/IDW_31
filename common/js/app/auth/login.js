@@ -1,6 +1,3 @@
-// common/js/app/auth/login.js
-// Simulación de login para el administrador
-
 const form = document.getElementById("loginForm");
 
 form.addEventListener("submit", (e) => {

@@ -42,7 +42,8 @@
     <div class="container"><span id="datetime"></span></div>
   </div>
 
-  <section class="hero" style="position:relative; height:280px; background:url('common/img/FONDO.jpg') center/cover no-repeat;">
+  <section class="hero"
+    style="position:relative; height:280px; background:url('common/img/FONDO.jpg') center/cover no-repeat;">
     <div style="position:absolute; inset:0; background:rgba(11,61,145,.6)"></div>
     <div class="container position-relative text-center text-white" style="z-index:2; padding-top:70px;">
       <h1 class="fw-bold">Contacto IDW S.A</h1>
@@ -81,8 +82,8 @@
               <div class="ratio ratio-4x3">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3406.184242081646!2d-58.02534752460138!3d-31.38147489647238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95ade816212d1dbd%3A0xf5bc8f349572e0e4!2sMonse%C3%B1or%20Tavella%201450%2C%20E3202BCJ%20Concordia%2C%20Entre%20R%C3%ADos!5e0!3m2!1ses-419!2sar!4v1708371462308!5m2!1ses-419!2sar"
-                  style="border:0;" allowfullscreen="" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade" title="Ubicación del Centro Médico IDW" class="rounded-3">
+                  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                  title="Ubicación del Centro Médico IDW" class="rounded-3">
                 </iframe>
               </div>
             </div>
@@ -112,30 +113,6 @@
     }
     updateDateTime();
     setInterval(updateDateTime, 1000);
-
-    // Menú dinámico según rol
-    document.addEventListener("DOMContentLoaded", () => {
-      const userRole = localStorage.getItem("userRole");
-      const nav = document.getElementById("navLinks");
-      const baseMenu = [
-        { nombre: "Inicio", href: "index.html" },
-        { nombre: "Acerca de", href: "institucional.html" },
-        { nombre: "Contacto", href: "contacto.html" },
-        { nombre: "Catálogo", href: "catalogo.html" },
-        { nombre: "Sacar turno", href: "reservar-turno.html" }
-      ];
-      const adminExtra = [
-        { nombre: "Médicos", href: "medicos.html" },
-        { nombre: "Especialidades", href: "especialidades.html" },
-        { nombre: "Turnos", href: "turnos.html" },
-        { nombre: "Obras Sociales", href: "obras-sociales.html" }
-      ];
-      const menuFinal = userRole === "admin" ? [...baseMenu.slice(0, 4), ...adminExtra.slice(0, 3), baseMenu[4], adminExtra[3]] : baseMenu;
-      nav.innerHTML = menuFinal.map(l => {
-        const isActive = l.href === currentPage ? 'active' : '';
-        return `<li class="nav-item"><a class="nav-link ${isActive}" href="${l.href}">${l.nombre}</a></li>`;
-      }).join("");
-    });
 
     let currentPage = window.location.pathname.split("/").pop();
     if (currentPage === "") {
