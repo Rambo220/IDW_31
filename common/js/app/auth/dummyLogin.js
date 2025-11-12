@@ -1,5 +1,3 @@
-console.log("[dummyLogin] cargado ✅");
-
 // Referencias al formulario y campos
 const form = document.getElementById("loginForm");
 const userInput = document.getElementById("usuario");
@@ -17,6 +15,7 @@ form?.addEventListener("submit", async (e) => {
   }
 
   try {
+
     // Llamado a la API pública de DummyJSON
     const res = await fetch("https://dummyjson.com/auth/login", {
       method: "POST",
@@ -31,7 +30,7 @@ form?.addEventListener("submit", async (e) => {
     console.log("[dummyLogin] Respuesta del servidor:", data);
 
     if (!res.ok) {
-      alert(data.message || "Error en el inicio de sesión. Verificá tus datos.");
+      alert(data.message || "Error en el inicio de sesión, verificá tus datos.");
       return;
     }
 

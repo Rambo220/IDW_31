@@ -19,10 +19,8 @@ if (!window.__MENU_LOADED__) {
     const btnAdmin = document.getElementById("btnAdmin");
     const btnLogout = document.getElementById("btnLogout");
 
-    const scope = document.body.dataset.scope || "public"; 
+    const scope = document.body.dataset.scope || "public";
 
-    // ⛔ Importante: si es página del ADMIN, dejamos que lo maneje admin-guard.js
-    // (así evitamos redirecciones duplicadas y menús mezclados)
     if (scope === "admin") {
       return; // no tocar menú/redirects en admin
     }
@@ -31,20 +29,20 @@ if (!window.__MENU_LOADED__) {
     const isAdmin = localStorage.getItem("userRole") === "admin";
 
     const PUBLIC_MENU = [
-      { nombre: "Inicio",        href: "index.html" },
-      { nombre: "Acerca de",     href: "institucional.html" },
-      { nombre: "Contacto",      href: "contacto.html" },
-      { nombre: "Catálogo",      href: "catalogo.html" },
-      { nombre: "Sacar turno",   href: "reservar-turno.html" }
+      { nombre: "Inicio", href: "index.html" },
+      { nombre: "Acerca de", href: "institucional.html" },
+      { nombre: "Contacto", href: "contacto.html" },
+      { nombre: "Catálogo", href: "catalogo.html" },
+      { nombre: "Sacar turno", href: "reservar-turno.html" }
     ];
 
     const ADMIN_MENU = [
-      { nombre: "Inicio",          href: "index-admin.html" },
-      { nombre: "Médicos",         href: "medicos.html" },
-      { nombre: "Obras Sociales",  href: "obras-sociales.html" },
-      { nombre: "Especialidades",  href: "especialidades.html" },
-      { nombre: "Turnos",          href: "turnos.html" },
-      { nombre: "Usuarios",        href: "usuarios.html" }
+      { nombre: "Inicio", href: "index-admin.html" },
+      { nombre: "Médicos", href: "medicos.html" },
+      { nombre: "Obras Sociales", href: "obras-sociales.html" },
+      { nombre: "Especialidades", href: "especialidades.html" },
+      { nombre: "Turnos", href: "turnos.html" },
+      { nombre: "Usuarios", href: "usuarios.html" }
     ];
 
     const menu = isAdmin ? ADMIN_MENU : PUBLIC_MENU;

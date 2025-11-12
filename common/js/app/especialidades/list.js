@@ -1,6 +1,3 @@
-// Este archivo muestra el listado de especialidades en la tabla,
-// permite buscar por nombre y eliminar una si no está en uso.
-
 import { listEspecialidades, deleteEspecialidad } from '../medicos/service.js';
 
 // Referencias a los elementos del HTML

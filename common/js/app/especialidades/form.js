@@ -1,5 +1,3 @@
-// Formulario de especialidades: crear o editar
-
 import {
   listEspecialidades,
   getEspecialidadById,
@@ -9,7 +7,7 @@ import {
 
 // referencias al DOM
 const titulo = document.getElementById('form-title');
-const form   = document.getElementById('form-especialidad');
+const form = document.getElementById('form-especialidad');
 const params = new URLSearchParams(location.search);
 const editingId = params.get('id'); // puede ser null
 
